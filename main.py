@@ -9,10 +9,10 @@ load_dotenv()
 app = Flask(__name__)
 
 
-uri = f"mongodb+srv://Main:{os.getenv('MONGODB_PASSWORD')}@main.u1smzfr.mongodb.net/"
+uri = f"mongodb+srv://Test:{os.getenv('MONGODB_PASSWORD')}@main.l0zlzdr.mongodb.net/"
 client = MongoClient(uri)
 db = client.get_database("Main")
-records = db["main"]
+records = db["test"]
 
 
 @app.route('/', methods=["GET"])
@@ -26,7 +26,7 @@ def login_db():
     name = request.form.get("Email")
     passw = request.form.get('Password')
 
-    user_data = db.main.find_one({'Email' : name})
+    user_data = db.test.find_one({'Email' : name})
 
     if user_data is None:
         return redirect(url_for('signup'))
@@ -56,7 +56,7 @@ def submit():
         return f"""your Email is {name}, and your password is {passw},
         these both can't be same so please change your password"""
     else:
-        return render_template("index1.html")
+        return render_template("dashboard.html")
 
 
 @app.route('/Signup', methods=['GET'])
