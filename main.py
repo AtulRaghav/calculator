@@ -11,10 +11,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = f"{os.getenv('Secret_Key')}"
 
 
-uri = f"mongodb+srv://Test:{os.getenv('MONGODB_PASSWORD')}@main.l0zlzdr.mongodb.net/"
+uri = f"mongodb+srv://{os.getenv('MONGODB_USER')}:{os.getenv('MONGODB_PASSWORD')}@atulrajput.3ygao9m.mongodb.net/"
 client = MongoClient(uri)
-db = client.get_database("Main")
-records = db["test"]
+db = client.get_database("atulraghav")
+records = db["my_collection"]
 
 
 
